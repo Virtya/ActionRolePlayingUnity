@@ -7,7 +7,7 @@ public class WebLoadingBillboard : MonoBehaviour
     [System.Obsolete]
     public void Operate()
     {
-        ManagersWeatherAndImage.Images.GetWebImage(OnWebImage);
+        Managers.Images.GetWebImage(OnWebImage);
     }
 
     private void OnWebImage(Texture2D image)

@@ -16,7 +16,7 @@ public class CheckpointTrigger : MonoBehaviour
             return;
         }
 
-        ManagersWeatherAndImage.Weather.LogWeather(identifier);
+        Managers.Weather.LogWeather(identifier);
         _triggered = true;
     }
 }

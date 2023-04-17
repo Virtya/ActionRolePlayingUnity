@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class NetworkService : MonoBehaviour
 {
-    private const string xmlApi = "http://api.openweathermap.org/data/2.5/weather?q=Chicago,us&mode=xml&APPID=01c09d390c387a780cef56c810cd457d";
+    private const string xmlApi = "http://api.openweathermap.org/data/2.5/weather?q=Voronezh&mode=xml&APPID=01c09d390c387a780cef56c810cd457d";
 
     private const string webImage = "https://papik.pro/uploads/posts/2023-03/1677786442_papik-pro-p-samii-krasivii-peizazh-risunok-2.jpg";
     private const string localApi = "http://localhost/UnityGameServ/api.php";

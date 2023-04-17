@@ -4,8 +4,10 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerManager))]
 [RequireComponent (typeof(InventoryManager))]
-[RequireComponent(typeof(WeatherManager))]
+[RequireComponent (typeof(WeatherManager))]
 [RequireComponent(typeof(ImagesManager))]
+[RequireComponent(typeof(MissionManager))]
+[RequireComponent(typeof(DataManager))]
 
 public class Managers : MonoBehaviour
 {
@@ -13,22 +15,30 @@ public class Managers : MonoBehaviour
     public static InventoryManager Inventory { get; private set; }
     public static WeatherManager Weather { get; private set; }
     public static ImagesManager Images { get; private set; }
+    public static MissionManager Mission { get; private set; }
+    public static DataManager Data { get; private set; }
 
     private List<IGameManager> _startSequence;
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+
+        Data = GetComponent<DataManager>();
         Player = GetComponent<PlayerManager>();
         Inventory = GetComponent<InventoryManager>();
         Weather = GetComponent<WeatherManager>();
         Images = GetComponent<ImagesManager>();
+        Mission = GetComponent<MissionManager>();
 
         _startSequence = new List<IGameManager>
         {
             Player,
             Inventory,
             Weather,
-            Images
+            Images,
+            Mission,
+            Data
         };
 
         StartCoroutine(StartupManagers());
@@ -64,11 +74,13 @@ public class Managers : MonoBehaviour
             if (numReady > lastReady)
             {
                 Debug.Log("Progress: " + numReady + "/" + numModules);
+                Messenger<int, int>.Broadcast(StartupEvent.MANAGERS_PROGRESS, numReady, numModules);
             }
 
             yield return null;
         }
 
         Debug.Log("All managers started up");
+        Messenger.Broadcast(StartupEvent.MANAGERS_STARTED);
     }
 }

@@ -11,11 +11,6 @@ public class WeatherManager : MonoBehaviour, IGameManager
 
     private NetworkService _network;
 
-    public void Startup()
-    {
-        throw new System.NotImplementedException();
-    }
-
     [System.Obsolete]
     public void Startup(NetworkService service)
     {

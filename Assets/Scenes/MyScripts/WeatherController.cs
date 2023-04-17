@@ -27,7 +27,7 @@ public class WeatherController : MonoBehaviour
 
     private void OnWeatherUpdated()
     {
-        SetOvercast(ManagersWeatherAndImage.Weather.cloudValue);
+        SetOvercast(Managers.Weather.cloudValue);
     }
 
     /*void Update()
