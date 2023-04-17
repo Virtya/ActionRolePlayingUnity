@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private Text healthLabel;
     [SerializeField] private InventoryPopup popup;
     [SerializeField] private Text levelEnding;
+    [SerializeField] private SettingsPopup settingsPopup;
 
     [System.Obsolete]
     private void Awake()
@@ -30,8 +31,10 @@ public class UIController : MonoBehaviour
     void Start()
     {
         OnHealthUpdated();
+        settingsPopup.gameObject.SetActive(false);
 
         levelEnding.gameObject.SetActive(false);
+        settingsPopup.Close();
         popup.gameObject.SetActive(false);
     }
 
@@ -42,6 +45,12 @@ public class UIController : MonoBehaviour
             bool isShowing = popup.gameObject.activeSelf;
             popup.gameObject.SetActive(!isShowing);
             popup.Refresh();
+        }
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            bool isShowing = settingsPopup.gameObject.activeSelf;
+            settingsPopup.gameObject.SetActive(!isShowing);
         }
     }
 

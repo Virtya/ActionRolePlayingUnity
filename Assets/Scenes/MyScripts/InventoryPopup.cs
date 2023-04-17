@@ -13,6 +13,8 @@ public class InventoryPopup : MonoBehaviour
     [SerializeField] private Button equipButton;
     [SerializeField] private Button useButton;
 
+    [SerializeField] private AudioClip sound;
+
     private string _curItem;
 
     public void Refresh()
@@ -90,12 +92,14 @@ public class InventoryPopup : MonoBehaviour
     public void OnItem(string item)
     {
         _curItem = item;
+        ForAudioManager.Audio.PlaySound(sound);
         Refresh();
     }
 
     public void OnEquip()
     {
         Managers.Inventory.EquipItem(_curItem);
+        ForAudioManager.Audio.PlaySound(sound);
         Refresh();
     }
 
@@ -106,6 +110,7 @@ public class InventoryPopup : MonoBehaviour
         {
             Managers.Player.ChangeHealth(25);
         }
+        ForAudioManager.Audio.PlaySound(sound);
         Refresh();
     }
 }
