@@ -38,7 +38,7 @@ public class PointClickMovement : MonoBehaviour
     void Update()
     {
         Vector3 movement = Vector3.zero;
-
+    
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
